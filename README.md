@@ -4,7 +4,7 @@
  - Mongodb
  - Redis
  - Configurable
- - Structued 
+ - Structured 
  - Glide for vendoring https://github.com/Masterminds/glide
 
 # Feature
@@ -16,7 +16,7 @@
  - Web app authentication
  
 # Usage
- - clone the project to $GOPATH/src/
+ - clone git@github.com:kyawmyintthein/echo_rest_api.git to $GOPATH/src/
  - cd echo_rest_api/
  - create database manually based on database.json (development env)
  - go run server.go
