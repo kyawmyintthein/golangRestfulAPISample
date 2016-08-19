@@ -1,0 +1,27 @@
+{
+  "production":{
+      "mysql": {
+          "name": "echo_rest_dev",
+          "user": "root",
+          "password": "root"
+      }
+  },
+  "development":{
+      "mysql": {
+          "name": "echo_rest_dev",
+          "user": "root",
+          "host": "localhost",
+          "port": "3306",
+          "password": ""
+      }
+  },
+  "test":{
+      "mysql": {
+          "name": "echo_rest_dev",
+          "user": "root",
+          "host": "localhost",
+          "password": "root",
+          "port": "3306"
+      }
+  }
+}
