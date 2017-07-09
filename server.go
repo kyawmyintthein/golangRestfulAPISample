@@ -3,7 +3,6 @@ package main
 import (
 	"golangRestfulAPISample/app"
 	"golangRestfulAPISample/app/models"
-	"golangRestfulAPISample/config"
 	"golangRestfulAPISample/db/gorm"
 )
 

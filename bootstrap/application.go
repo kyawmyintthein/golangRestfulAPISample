@@ -46,7 +46,7 @@ func (app *Application) loadAppConfig() {
 	appConfig.OnConfigChange(func(e fsnotify.Event) {
 		//	glog.Info("App Config file changed %s:", e.Name)
 	})
-	app.AppConfig = Config(appConfig)
+	app.AppConfig = &Config(*appConfig)
 }
 
 // loadDBConfig: read application config and build viper object
@@ -69,7 +69,7 @@ func (app *Application) loadDBConfig() {
 	dbConfig.OnConfigChange(func(e fsnotify.Event) {
 		//	glog.Info("App Config file changed %s:", e.Name)
 	})
-	app.DBConfig = Config(dbConfig)
+	app.DBConfig = &Config(*dbConfig)
 }
 
 // loadENV

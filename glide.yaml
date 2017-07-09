@@ -1,8 +1,0 @@
-package: main
-import:
-  - package: github.com/labstack/echo
-  - package: github.com/jinzhu/gorm
-  - package: github.com/go-sql-driver/mysql
-  - package: github.com/lib/pq
-  - package: github.com/BurntSushi/toml
-  - package: github.com/go-yaml/yaml

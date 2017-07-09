@@ -13,7 +13,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"golangRestfullAPISample/db/gorm"
+	"golangRestfulAPISample/db/gorm"
 	"reflect"
 	"strings"
 )

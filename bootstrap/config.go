@@ -13,7 +13,7 @@ var (
 
 	PROD_ENV = "prod"
 
-	REPLACER strings.Replacer = strings.NewReplacer(".", "_")
+	REPLACER *strings.Replacer = strings.NewReplacer(".", "_")
 
 	APP_CONFIG_PREFIX = `APP`
 
