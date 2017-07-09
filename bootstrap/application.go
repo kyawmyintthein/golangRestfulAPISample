@@ -78,7 +78,7 @@ func (app *Application) loadENV() {
 	var APPENV string
 	var appConfig viper.Viper
 	appConfig = viper.Viper(app.AppConfig)
-	APPENV = appConfig.GetString("ENV")
+	APPENV = appConfig.GetString("env")
 	switch APPENV {
 	case DEV_ENV:
 		app.ENV = DEV_ENV

@@ -1,0 +1,30 @@
+dev:
+  adapter: mysql
+  database: restful_api_sample_dev
+  username: root
+  password: 
+  host: localhost     #defaults to 127.0.0.1
+  port: 3306
+  idle_conns: 10
+  open_conns: 100            
+
+staging:
+  adapter: mysql
+  database: restful_api_sample_stag
+  username: root
+  password: 
+  host: localhost     #defaults to 127.0.0.1
+  port: 3306
+  idle_conns: 10
+  open_conns: 100           
+
+prod:
+  adapter: postgres
+  database: restful_api_sample_prod
+  username: postgres
+  password: postgres
+  host: localhost     #defaults to 127.0.0.1
+  port: 5432
+  sslmode: disable
+  idle_conns: 10
+  open_conns: 100           
