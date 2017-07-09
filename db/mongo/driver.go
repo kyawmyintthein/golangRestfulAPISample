@@ -1,24 +1,26 @@
 package mongo
 
-// import "echo_rest_api/config"
+import "golangRestfulAPISample/bootstrap"
 
-// var maxPool int
+var maxPool int
 
-// func Init() {
-// 	var err error
-// 	maxPool, err = config.Development.Mongo.MaxPool
-// 	if err != nil {
-// 		println(err)
-// 	}
-// 	checkAndInitServiceConnection()
-// }
+// init mongodb 
+func Init() {
+	var adapter string
+	adapter = bootstrap.App.DBConfig.String("adapter")
+	if adapter == "mongodb" {
+		maxPool = bootstrap.App.DBConfig.Int("mongodb.max_pool")
+		checkAndInitServiceConnection()
+	}
+}
 
-// func checkAndInitServiceConnection() {
-// 	if service.baseSession == nil {
-// 		service.URL = config.Development.Mongo.Path
-// 		err := service.New()
-// 		if err != nil {
-// 			println(err)
-// 		}
-// 	}
-// }
+// checkAndInitServiceConnection
+func checkAndInitServiceConnection() {
+	var err error
+	if service.baseSession == nil {
+		service.URL = bootstrap.App.DBConfig.String("mongodb.path")
+		if err = service.New(); err != nil {
+			panic(err)
+		}
+	}
+}

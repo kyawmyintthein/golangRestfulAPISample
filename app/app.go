@@ -7,6 +7,7 @@ import (
 
 var Server *echo.Echo
 
+// init echo web server
 func Init() {
 	Server = echo.New()
 	// Middleware

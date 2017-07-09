@@ -3,10 +3,13 @@ package main
 import (
 	"golangRestfulAPISample/app"
 	"golangRestfulAPISample/app/models"
-	"golangRestfulAPISample/db/gorm"
 	"golangRestfulAPISample/bootstrap"
+	"golangRestfulAPISample/db/gorm"
+	"golangRestfulAPISample/db/redis"
+	"golangRestfulAPISample/db/mongo"
 )
 
+// main entry
 func main() {
 	// init server
 	app.Init()
@@ -16,6 +19,12 @@ func main() {
 	autoDropTables()
 	autoCreateTables()
 	autoMigrateTables()
+
+	// init redis
+	redis.Init()
+
+	// init mongo
+	mongo.Init()
 
 	// run server
 	app.Server.Logger.Fatal(app.Server.Start(":1313"))

@@ -6,7 +6,14 @@ dev:
   host: localhost     #defaults to 127.0.0.1
   port: 3306
   idle_conns: 10
-  open_conns: 100            
+  open_conns: 100
+  redis:
+    address: localhost:6379
+    password:
+  mongodb:
+    database: restful_api_sample_dev
+    path: localhost
+    max_pool: 20    
 
 staging:
   adapter: mysql

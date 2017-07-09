@@ -5,5 +5,5 @@ import (
 	"github.com/labstack/echo"
 )
 
-app.Server.POST("/", func(c echo.Context) error{
+app.Server.POST("/users", func(c echo.Context) error{
 })
