@@ -3,9 +3,10 @@
  - GORM ORM for mysql, postgres, sqlite(Golang) https://github.com/jinzhu/gorm
  - Mongodb
  - Redis
- - Configurable
+ - Configurable (viper)
  - Structured 
- - Glide for vendoring https://github.com/Masterminds/glide
+ - Cli (Cobra)
+ - Govendor for vendoring https://github.com/Masterminds/glide
 
 # Feature
  - Using gorm ORM (CRUD sample)
@@ -13,12 +14,11 @@
  - Restful-api sample
  - Web app sample (future)
  - JWT authentication with restful 
- - Web app authentication
  
 # Usage
- - clone git@github.com:kyawmyintthein/echo_rest_api.git to $GOPATH/src/
- - cd echo_rest_api/
- - create database manually based on database.json (development env)
- - go run server.go
+ - clone git@github.com:kyawmyintthein/golangRestfulAPISample.git to $GOPATH/src/
+ - cd golangRestfulAPISample/
+ - create database manually based on database.yaml (dev env)
+ - go run main.go
 
 
