@@ -13,8 +13,20 @@ type (
 	}
 )
 
+// Callback before update user
+func (m *User) BeforeUpdate() (err error) {
+    m.UpdatedAt = time.Now()
+    return
+}
+
+// Callback before create user
+func (m *User) BeforeCreate() (err error) {
+    m.CreatedAt = time.Now()
+    return
+}
+
 // Create
-func Create(m *User) (User, error) {
+func Create(m *User) (*User, error) {
 	var err error
 	err = orm.Create(&m)
 	return m, err
@@ -24,14 +36,14 @@ func Create(m *User) (User, error) {
 func (m *User) Update() error {
 	var err error
 	err = orm.Save(&m)
-	return m, err
+	return err
 }
 
 // Delete
 func (m *User) Delete() error {
 	var err error
 	err = orm.Delete(&m)
-	return m, err
+	return err
 }
 
 // FindUserByID
@@ -50,6 +62,6 @@ func FindAllUsers() ([]User, error) {
 		users []User
 		err   error
 	)
-	err = orm.FindOneByID(&users)
+	err = orm.FindAll(users)
 	return users, err
 }

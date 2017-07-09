@@ -34,7 +34,7 @@ func postgresConn() {
 		connectionString string
 		err              error
 	)
-	connectionString := fmt.Sprintf("postgresql://%s:%s@%s:%s/%s?sslmode=%s", bootstrap.App.DBConfig.String("user"), postgres.Password, postgres.Host, postgres.Port, postgres.Name, postgres.SSLMode)
+	connectionString = fmt.Sprintf("postgresql://%s:%s@%s:%s/%s?sslmode=%s", bootstrap.App.DBConfig.String("user"), bootstrap.App.DBConfig.String("password"), bootstrap.App.DBConfig.String("host"), bootstrap.App.DBConfig.String("port"), bootstrap.App.DBConfig.String("name"), bootstrap.App.DBConfig.String("sslmode"))
 	if db, err = gorm.Open("postgres", connectionString); err != nil {
 		panic(err)
 	}
@@ -46,8 +46,8 @@ func postgresConn() {
 	db.LogMode(true)
 	db.Exec("CREATE EXTENSION postgis")
 
-	db.DB().SetMaxIdleConns(beego.AppConfig.DefaultInt(runmode+"::db_max_idle_conns", 10))
-	db.DB().SetMaxOpenConns(beego.AppConfig.DefaultInt(runmode+"::db_max_open_conns", 100))
+	db.DB().SetMaxIdleConns(bootstrap.App.DBConfig.Int("idle_conns"))
+	db.DB().SetMaxOpenConns(bootstrap.App.DBConfig.Int("open_conns"))
 }
 
 // mysqlConn: setup mysql database connection using the configuration from database.yaml
@@ -56,11 +56,9 @@ func mysqlConn() {
 		connectionString string
 		err              error
 	)
-	if mysql.Password == "" {
-		connectionString = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", mysql.User, mysql.Password, mysql.Host, mysql.Port, mysql.Name)
-	} else {
-		connectionString = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", mysql.User, mysql.Password, mysql.Host, mysql.Port, mysql.Name)
-	}
+	
+	connectionString = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", bootstrap.App.DBConfig.String("user"), bootstrap.App.DBConfig.String("password"), bootstrap.App.DBConfig.String("host"), bootstrap.App.DBConfig.String("port"), bootstrap.App.DBConfig.String("name"))
+	
 	if db, err = gorm.Open("mysql", connectionString); err != nil {
 		panic(err)
 	}
@@ -69,6 +67,8 @@ func mysqlConn() {
 	}
 
 	db.LogMode(true)
+	db.DB().SetMaxIdleConns(bootstrap.App.DBConfig.Int("idle_conns"))
+	db.DB().SetMaxOpenConns(bootstrap.App.DBConfig.Int("open_conns"))
 }
 
 /*

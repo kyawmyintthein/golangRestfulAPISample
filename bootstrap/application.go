@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"github.com/fsnotify/fsnotify"
 	"gl.tzv.io/spf13/viper"
+	"fmt"
 )
 
 var App *Application
@@ -13,8 +14,8 @@ type Application struct {
 	Name      string  `json:"name"`
 	Version   string  `json:"version"`
 	ENV       string  `json:"env"`
-	AppConfig *Config `json:"application_config"`
-	DBConfig  *Config `json:"database_config"`
+	AppConfig Config `json:"application_config"`
+	DBConfig  Config `json:"database_config"`
 }
 
 func init() {
@@ -46,7 +47,7 @@ func (app *Application) loadAppConfig() {
 	appConfig.OnConfigChange(func(e fsnotify.Event) {
 		//	glog.Info("App Config file changed %s:", e.Name)
 	})
-	app.AppConfig = &Config(*appConfig)
+	app.AppConfig = Config(*appConfig)
 }
 
 // loadDBConfig: read application config and build viper object
@@ -69,15 +70,17 @@ func (app *Application) loadDBConfig() {
 	dbConfig.OnConfigChange(func(e fsnotify.Event) {
 		//	glog.Info("App Config file changed %s:", e.Name)
 	})
-	app.DBConfig = &Config(*dbConfig)
+	app.DBConfig = Config(*dbConfig)
 }
 
 // loadENV
 func (app *Application) loadENV() {
 	var APPENV string
+	var appConfig viper.Viper
+	appConfig = viper.Viper(app.AppConfig)
 	APPENV = appConfig.GetString("ENV")
 	switch APPENV {
-	case DEV_END:
+	case DEV_ENV:
 		app.ENV = DEV_ENV
 		break
 	case STAGING_ENV:
@@ -94,15 +97,21 @@ func (app *Application) loadENV() {
 
 // String: read string value from viper.Viper
 func (config *Config) String(key string) string {
-	return config.GetString(fmt.Sprintf("%s.%s", App.ENV, key))
+	var viperConfig viper.Viper
+	viperConfig = viper.Viper(*config)
+	return viperConfig.GetString(fmt.Sprintf("%s.%s", App.ENV, key))
 }
 
 // Int: read int value from viper.Viper
-func (config *Config) String(key string) int {
-	return config.GetInt(fmt.Sprintf("%s.%s", App.ENV, key))
+func (config *Config) Int(key string) int {
+	var viperConfig viper.Viper
+	viperConfig = viper.Viper(*config)
+	return viperConfig.GetInt(fmt.Sprintf("%s.%s", App.ENV, key))
 }
 
 // Boolean: read boolean value from viper.Viper
-func (config *Config) Boolean(key string) string {
-	return config.GetBool(fmt.Sprintf("%s.%s", App.ENV, key))
+func (config *Config) Boolean(key string) bool {
+	var viperConfig viper.Viper
+	viperConfig = viper.Viper(*config)
+	return viperConfig.GetBool(fmt.Sprintf("%s.%s", App.ENV, key))
 }

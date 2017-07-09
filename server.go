@@ -4,6 +4,7 @@ import (
 	"golangRestfulAPISample/app"
 	"golangRestfulAPISample/app/models"
 	"golangRestfulAPISample/db/gorm"
+	"golangRestfulAPISample/bootstrap"
 )
 
 func main() {
@@ -34,7 +35,7 @@ func autoMigrateTables() {
 
 // auto drop tables on dev mode
 func autoDropTables() {
-	if config.AppConfig.ENV == "dev" {
+	if bootstrap.App.ENV == "dev" {
 		gorm.DBManager().DropTableIfExists(&models.User{}, &models.User{})
 	}
 }
