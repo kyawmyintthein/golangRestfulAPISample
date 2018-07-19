@@ -20,6 +20,4 @@ func Init() {
 		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}))
 
-	//static file serviing
-	Server.Static("/static", "assets")
 }

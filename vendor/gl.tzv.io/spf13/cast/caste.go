@@ -855,13 +855,6 @@ func ToStringMapStringE(i interface{}) (map[string]string, error) {
 	var m = map[string]string{}
 
 	switch v := i.(type) {
-	case string:
-		splitSemiColon := strings.Split(v,";")
-		for tzv := range splitSemiColon {
-			splitColon := strings.Split(splitSemiColon[tzv], ":")
-			m[splitColon[0]] = splitColon[1]
-		}
-		return m, nil
 	case map[string]string:
 		return v, nil
 	case map[string]interface{}:

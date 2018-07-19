@@ -5,8 +5,8 @@ import (
 	"golangRestfulAPISample/app/models"
 	"golangRestfulAPISample/bootstrap"
 	"golangRestfulAPISample/db/gorm"
-	"golangRestfulAPISample/db/redis"
 	"golangRestfulAPISample/db/mongo"
+	"golangRestfulAPISample/db/redis"
 )
 
 // main entry
