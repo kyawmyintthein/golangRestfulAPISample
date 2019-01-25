@@ -1,0 +1,16 @@
+#db
+mongodb:
+ host: mongodb://localhost:27017
+ database: rest_api_development
+
+# log
+log:
+ log_level: info
+ log_file: log/rest_api.log
+ log_rotation: true
+ json_log_format: true
+
+swagger:
+ host: "localhost:3030"
+ version: v1
+ base_path: /

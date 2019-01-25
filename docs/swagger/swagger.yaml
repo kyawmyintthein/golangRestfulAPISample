@@ -1,0 +1,200 @@
+basePath: /
+definitions:
+  model.CreateUserRequest:
+    properties:
+      name:
+        type: string
+    type: object
+  model.ErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/model.HttpError'
+        type: object
+      success:
+        example: false
+        type: boolean
+    type: object
+  model.HealthStatus:
+    properties:
+      environment:
+        example: database name
+        type: string
+      status:
+        example: ok
+        type: string
+    type: object
+  model.HttpError:
+    properties:
+      code:
+        example: 40001
+        type: integer
+      message:
+        example: status bad request
+        type: string
+    type: object
+  model.UpdateUserRequest:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  model.User:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+host: localhost:3030
+info:
+  contact:
+    email: email address
+    name: API Support
+  description: App name documentation.
+  license: {}
+  title: App Name
+  version: "1.0"
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: check health file exist or not
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.HealthStatus'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+            type: object
+      summary: Check server's health
+      tags:
+      - health
+  /health/db:
+    get:
+      consumes:
+      - application/json
+      description: check database is working or not
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.HealthStatus'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+            type: object
+      summary: Check database's health
+      tags:
+      - health
+  /users:
+    post:
+      consumes:
+      - application/json
+      description: create new user
+      parameters:
+      - description: Request Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateUserRequest'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.User'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+            type: object
+      summary: Create new user
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: update user's profile with ID
+      parameters:
+      - description: Request Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateUserRequest'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+            type: object
+      summary: Update user profile
+      tags:
+      - user
+  /users/{user_id}:
+    delete:
+      consumes:
+      - application/json
+      description: retrieve all user's profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+            type: object
+      summary: get all user profile
+      tags:
+      - user
+    get:
+      consumes:
+      - application/json
+      description: retrieve user's profile with ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+            type: object
+      summary: Get user profile
+      tags:
+      - user
+swagger: "2.0"

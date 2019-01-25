@@ -1,50 +1,32 @@
 package main
 
 import (
-	"golangRestfulAPISample/app"
-	"golangRestfulAPISample/app/models"
-	"golangRestfulAPISample/bootstrap"
-	"golangRestfulAPISample/db/gorm"
-	"golangRestfulAPISample/db/mongo"
-	"golangRestfulAPISample/db/redis"
+	_ "github.com/kyawmyintthein/golangRestfulAPISample/docs"
+	"flag"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app"
 )
 
-// main entry
-func main() {
-	// init server
-	app.Init()
+// @title App Name
+// @version 1.0
+// @description  App name documentation.
 
-	// init database
-	gorm.Init()
-	autoDropTables()
-	autoCreateTables()
-	autoMigrateTables()
+// @contact.name API Support
+// @contact.email email address
 
-	// init redis
-	redis.Init()
+// @host localhost:3030
+// @BasePath /
+func main(){
+	var configFilePath string
+	var serverPort string
+	flag.StringVar(&configFilePath, "config", "config.yml", "absolute path to the configuration file")
+	flag.StringVar(&serverPort, "server_port", "4000", "port on which server runs")
+	flag.Parse()
 
-	// init mongo
-	mongo.Init()
+	application := app.New(configFilePath)
 
-	// run server
-	app.Server.Logger.Fatal(app.Server.Start(":1313"))
-}
+	// init necessary module before start
+	application.Init()
 
-// autoCreateTables: create database tables using GORM
-func autoCreateTables() {
-	if !gorm.DBManager().HasTable(&models.User{}) {
-		gorm.DBManager().CreateTable(&models.User{})
-	}
-}
-
-// autoMigrateTables: migrate table columns using GORM
-func autoMigrateTables() {
-	gorm.DBManager().AutoMigrate(&models.User{})
-}
-
-// auto drop tables on dev mode
-func autoDropTables() {
-	if bootstrap.App.ENV == "dev" {
-		gorm.DBManager().DropTableIfExists(&models.User{}, &models.User{})
-	}
+	// start http server
+	application.Start(serverPort)
 }
