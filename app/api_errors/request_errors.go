@@ -1,0 +1,22 @@
+package api_errors
+
+import (
+	error_const "github.com/kyawmyintthein/golangRestfulAPISample/app/constant/error-const"
+	"github.com/kyawmyintthein/golangRestfulAPISample/internal/errors"
+)
+
+type FailedToDecodeRequestBodyError struct{
+	*errors.BaseError
+}
+
+func NewFailedToDecodeRequestBodyError() *FailedToDecodeRequestBodyError{
+	baseErr := errors.NewError(error_const.InternalServerError, error_const.UnknownError, error_const.ErrorMapping[error_const.UnknownError])
+	return &FailedToDecodeRequestBodyError{
+		baseErr,
+	}
+}
+
+func (e *FailedToDecodeRequestBodyError) Wrap(err error) error {
+	e.BaseError.Wrap(err)
+	return e
+}

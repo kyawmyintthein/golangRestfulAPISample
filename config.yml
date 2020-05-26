@@ -1,3 +1,11 @@
+#application
+app:
+  environment: dev
+  http_port: 4000
+#graceful shutdown
+graceful_shutdown:
+ enabled: true
+ timeout: 10 # second
 #db
 mongodb:
  host: mongodb://localhost:27017
@@ -5,10 +13,10 @@ mongodb:
 
 # log
 log:
- log_level: info
- log_file: log/rest_api.log
- log_rotation: true
- json_log_format: true
+ level: info
+ filepath: log/rest_api.log
+ rotation: true
+ json_format: true
 
 swagger:
  host: "localhost:3030"

@@ -1,0 +1,46 @@
+enabled_config_localization: true
+config:
+  app:
+    base_dir: ./clconfigmanager/example/config
+    app_files:
+      - extra_config.yml
+  circles_config:
+    base_dir: ./clconfigmanager/example/config
+    app_files:
+      - sg/staging/example/example.staging.v1.config.yml
+    shared_files:
+      - sg/staging/shared/generic.staging.v1.config.yml
+    file_type:
+    shared_directories:
+    app_directories:
+  circles_locale:
+    base_dir: "/Users/kyawmyintthein/go/src/bitbucket.org/libertywireless/golang_artifacts/cltranslator/"
+    app_files:
+    shared_files:
+    file_type: yml
+    shared_directories:
+    app_directories:
+      - example/locale
+etcd:
+  enabled: false
+  endpoints: localhost:2379
+  username:
+  password:
+  dial_timeout_sec: 20
+  req_timeout_sec: 10
+  watcher_path: /configuration-manager/user-service/user-service/sg-dev/v1
+  skip_error_connection_failed: true
+  configuration_labels:
+    - properties
+    - locale
+git:
+  enabled: true
+  rsa_key_path: /Users/kyawmyintthein/.ssh/id_rsa
+  username: git
+  email: kyaw@circles.asia
+  work_directory: /Users/kyawmyintthein/
+  repo_name: circles-config
+  branch: master
+  shallow_clone_depth: 1
+  shallow_fetch_depth: 1
+  skip_error_on_failed: true

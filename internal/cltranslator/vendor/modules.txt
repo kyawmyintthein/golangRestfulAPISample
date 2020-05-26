@@ -1,0 +1,151 @@
+# bitbucket.org/libertywireless/circles-framework/clconfigmanager v0.0.0-20200428133251-d86ddf446b03
+bitbucket.org/libertywireless/circles-framework/clconfigmanager
+# bitbucket.org/libertywireless/circles-framework/clerrors v0.0.0-20200428103130-7a7712bab98a
+bitbucket.org/libertywireless/circles-framework/clerrors
+# bitbucket.org/libertywireless/circles-framework/cllogging v0.0.0-20200428132820-f81fbf9c5869
+bitbucket.org/libertywireless/circles-framework/cllogging
+# bitbucket.org/libertywireless/circles-framework/clmiddlewares v0.0.0-20200428103130-7a7712bab98a
+bitbucket.org/libertywireless/circles-framework/clmiddlewares
+# bitbucket.org/libertywireless/circles-framework/cloption v0.0.0-20200428132820-f81fbf9c5869
+bitbucket.org/libertywireless/circles-framework/cloption
+# github.com/coreos/etcd v3.3.13+incompatible
+github.com/coreos/etcd/auth/authpb
+github.com/coreos/etcd/clientv3
+github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes
+github.com/coreos/etcd/etcdserver/etcdserverpb
+github.com/coreos/etcd/mvcc/mvccpb
+github.com/coreos/etcd/pkg/types
+# github.com/fsnotify/fsnotify v1.4.9
+github.com/fsnotify/fsnotify
+# github.com/gin-contrib/sse v0.1.0
+github.com/gin-contrib/sse
+# github.com/gin-gonic/gin v1.6.2
+github.com/gin-gonic/gin
+github.com/gin-gonic/gin/binding
+github.com/gin-gonic/gin/internal/bytesconv
+github.com/gin-gonic/gin/internal/json
+github.com/gin-gonic/gin/render
+# github.com/go-chi/chi v4.1.1+incompatible
+github.com/go-chi/chi
+github.com/go-chi/chi/middleware
+# github.com/go-playground/locales v0.13.0
+github.com/go-playground/locales
+github.com/go-playground/locales/currency
+# github.com/go-playground/universal-translator v0.17.0
+github.com/go-playground/universal-translator
+# github.com/go-playground/validator/v10 v10.2.0
+github.com/go-playground/validator/v10
+# github.com/gogo/protobuf v1.2.1
+github.com/gogo/protobuf/gogoproto
+github.com/gogo/protobuf/proto
+github.com/gogo/protobuf/protoc-gen-gogo/descriptor
+# github.com/golang/protobuf v1.3.3
+github.com/golang/protobuf/proto
+github.com/golang/protobuf/ptypes
+github.com/golang/protobuf/ptypes/any
+github.com/golang/protobuf/ptypes/duration
+github.com/golang/protobuf/ptypes/timestamp
+# github.com/hashicorp/hcl v1.0.0
+github.com/hashicorp/hcl
+github.com/hashicorp/hcl/hcl/ast
+github.com/hashicorp/hcl/hcl/parser
+github.com/hashicorp/hcl/hcl/printer
+github.com/hashicorp/hcl/hcl/scanner
+github.com/hashicorp/hcl/hcl/strconv
+github.com/hashicorp/hcl/hcl/token
+github.com/hashicorp/hcl/json/parser
+github.com/hashicorp/hcl/json/scanner
+github.com/hashicorp/hcl/json/token
+# github.com/json-iterator/go v1.1.9
+github.com/json-iterator/go
+# github.com/konsorten/go-windows-terminal-sequences v1.0.1
+github.com/konsorten/go-windows-terminal-sequences
+# github.com/leodido/go-urn v1.2.0
+github.com/leodido/go-urn
+# github.com/magiconair/properties v1.8.1
+github.com/magiconair/properties
+# github.com/mattn/go-isatty v0.0.12
+github.com/mattn/go-isatty
+# github.com/mitchellh/mapstructure v1.1.2
+github.com/mitchellh/mapstructure
+# github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421
+github.com/modern-go/concurrent
+# github.com/modern-go/reflect2 v1.0.1
+github.com/modern-go/reflect2
+# github.com/opentracing/opentracing-go v1.1.0
+github.com/opentracing/opentracing-go
+github.com/opentracing/opentracing-go/log
+# github.com/pelletier/go-toml v1.2.0
+github.com/pelletier/go-toml
+# github.com/sirupsen/logrus v1.5.0
+github.com/sirupsen/logrus
+# github.com/spf13/afero v1.1.2
+github.com/spf13/afero
+github.com/spf13/afero/mem
+# github.com/spf13/cast v1.3.1
+github.com/spf13/cast
+# github.com/spf13/jwalterweatherman v1.0.0
+github.com/spf13/jwalterweatherman
+# github.com/spf13/pflag v1.0.3
+github.com/spf13/pflag
+# github.com/spf13/viper v1.6.3
+github.com/spf13/viper
+# github.com/subosito/gotenv v1.2.0
+github.com/subosito/gotenv
+# github.com/ugorji/go/codec v1.1.7
+github.com/ugorji/go/codec
+# golang.org/x/net v0.0.0-20200425230154-ff2c4b7c35a0
+golang.org/x/net/context
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
+golang.org/x/net/internal/timeseries
+golang.org/x/net/trace
+# golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd
+golang.org/x/sys/unix
+# golang.org/x/text v0.3.2
+golang.org/x/text/secure/bidirule
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+# google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8
+google.golang.org/genproto/googleapis/rpc/status
+# google.golang.org/grpc v1.21.0
+google.golang.org/grpc
+google.golang.org/grpc/balancer
+google.golang.org/grpc/balancer/base
+google.golang.org/grpc/balancer/roundrobin
+google.golang.org/grpc/binarylog/grpc_binarylog_v1
+google.golang.org/grpc/codes
+google.golang.org/grpc/connectivity
+google.golang.org/grpc/credentials
+google.golang.org/grpc/credentials/internal
+google.golang.org/grpc/encoding
+google.golang.org/grpc/encoding/proto
+google.golang.org/grpc/grpclog
+google.golang.org/grpc/health/grpc_health_v1
+google.golang.org/grpc/internal
+google.golang.org/grpc/internal/backoff
+google.golang.org/grpc/internal/balancerload
+google.golang.org/grpc/internal/binarylog
+google.golang.org/grpc/internal/channelz
+google.golang.org/grpc/internal/envconfig
+google.golang.org/grpc/internal/grpcrand
+google.golang.org/grpc/internal/grpcsync
+google.golang.org/grpc/internal/syscall
+google.golang.org/grpc/internal/transport
+google.golang.org/grpc/keepalive
+google.golang.org/grpc/metadata
+google.golang.org/grpc/naming
+google.golang.org/grpc/peer
+google.golang.org/grpc/resolver
+google.golang.org/grpc/resolver/dns
+google.golang.org/grpc/resolver/passthrough
+google.golang.org/grpc/stats
+google.golang.org/grpc/status
+google.golang.org/grpc/tap
+# gopkg.in/ini.v1 v1.51.0
+gopkg.in/ini.v1
+# gopkg.in/yaml.v2 v2.2.8
+gopkg.in/yaml.v2
