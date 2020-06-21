@@ -11,5 +11,8 @@ func (app *restApiApplication) routes() {
 		r.Use(logging.NewRequestStructuredLogger())
 		router.Get("/health", app.HealthHandler.HealthCheck)
 		router.Get("/stop", app.ShutdownHandler.Stop)
+
+		router.Post("/articles", app.ArticleHandler.CreateArticle)
+		router.Get("/articles/{url}", app.ArticleHandler.GetArticle)
 	})
 }

@@ -9,10 +9,10 @@ import (
 )
 
 type GeneralConfig struct {
-	SqlDB       sql.SqlDBConfig                  `mapstructure:"sql_db" json:"sql_db"`
+	SqlDB       sql.SqlDBConfig                  `mapstructure:"sqldb" json:"sqldb"`
 	SqlBaseRepo base_repository.SqlRepositoryCfg `mapstructure:"sql_base_repo" json:"sql_base_repo"`
 
-	MongoDB       mongo.MongodbConfig                  `mapstructure:"mongo_db" json:"mongo_db"`
+	MongoDB       mongo.MongodbConfig                  `mapstructure:"mongodb" json:"mongodb"`
 	MongoBaseRepo base_repository.MongodbRepositoryCfg `mapstructure:"mongo_base_repo" json:"mongo_base_repo"`
 
 	NRTracer         newrelic.NewrelicCfg `mapstructure:"nr_tracer" json:"nr_tracer"`

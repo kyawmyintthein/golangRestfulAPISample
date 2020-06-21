@@ -5,6 +5,7 @@ import (
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/model"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/repository"
 	base_repository "github.com/kyawmyintthein/golangRestfulAPISample/internal/base-repository"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -30,4 +31,20 @@ func (repo *articleMongoRepo) Create(ctx context.Context, article *model.Article
 
 	article.RawID, _ = result.InsertedID.(primitive.ObjectID)
 	return article, nil
+}
+
+
+func (repo *articleMongoRepo) GetByURL(ctx context.Context, url string) (*model.Article, error){
+	var (
+		err error
+		article model.Article
+	)
+
+	collection := repo.MongodbConnector.DB(ctx).Collection(repo.collection)
+	err = collection.FindOne(ctx, bson.M{"url": url}).Decode(&article)
+	if err != nil{
+		return &article, err
+	}
+
+	return &article, nil
 }

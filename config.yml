@@ -11,12 +11,36 @@ mongodb:
  host: mongodb://localhost:27017
  database: rest_api_development
 
+mongo_base_repo:
+ enabled_newrelic_tracer: true
+
+sqldb:
+ driver: mysql
+ db_name: golang_restful_api_sample
+ db_host: localhost:3306
+ dial_timeout: 10
+ max_idle_conns: 10
+ max_open_conns: 10
+ conn_max_life_time:
+ username: root
+ password:
+ ssl_mode:
+ uri:
+
+sql_base_repo:
+ enabled_newrelic_tracer: true
+
 # log
 log:
  level: info
  filepath: log/rest_api.log
  rotation: true
  json_format: true
+
+nr_tracer:
+ enabled: false
+ name: golagnRestfulAPISample
+ license: ""
 
 swagger:
  host: "localhost:3030"

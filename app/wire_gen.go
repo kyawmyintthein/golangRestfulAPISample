@@ -45,7 +45,8 @@ func NewApp(configFilePaths ...string) (*restApiApplication, error) {
 	}
 	baseMongoRepo := injectors.ProvideBaseMongoRepo(generalConfig, mongodbConnector, newrelicTracer)
 	articlesRepository := mongo_repository.ProvideArticleRepository(baseMongoRepo)
-	articleService := service.ProvideArticleService(userRepository, articlesRepository)
+	stringHelper := infrastructure.ProvideStringHelper()
+	articleService := service.ProvideArticleService(userRepository, articlesRepository, stringHelper)
 	articleHandler := api.ProvideArticleHandler(articleService)
 	appRestApiApplication := &restApiApplication{
 		config:          generalConfig,

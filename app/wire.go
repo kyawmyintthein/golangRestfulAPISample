@@ -19,6 +19,7 @@ func NewApp(configFilePaths ...string) (*restApiApplication, error){
 		injectors.ProvideHttpServer,
 		injectors.ProvideNewRelic,
 		infrastructure.NewHttpResponseWriter,
+		infrastructure.ProvideStringHelper,
 
 		injectors.ProvideSqlDBConnector,
 		injectors.ProvideMongoDBConnector,

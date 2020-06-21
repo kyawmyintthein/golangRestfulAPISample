@@ -48,6 +48,19 @@ func NewError(code int, id string, args ...interface{}) *BaseError {
 	return err
 }
 
+func New(message string, args ...interface{}) *BaseError {
+	stack := make([]uintptr, 2)
+	stackLength := runtime.Callers(3, stack)
+	err := &BaseError{
+		id:    message,
+		messageFormat: message,
+		cause: nil,
+		args:  args,
+		stack: stack[:stackLength],
+	}
+	return err
+}
+
 func WithMessage(code int, id string, messageTemplate string, args ...interface{}) *BaseError {
 	stack := make([]uintptr, 2)
 	stackLength := runtime.Callers(3, stack)

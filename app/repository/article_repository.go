@@ -7,5 +7,6 @@ import (
 
 type ArticlesRepository interface {
 	Create(context.Context, *model.Article) (*model.Article, error)
+	GetByURL(context.Context, string) (*model.Article, error)
 }
 

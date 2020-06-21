@@ -5,32 +5,48 @@ import (
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/dto"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/model"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/repository"
+	"github.com/kyawmyintthein/golangRestfulAPISample/infrastructure"
 )
 
-type ArticleService interface{
-	CreateNewArticle(context.Context, int64, *dto.CreateArticleDTO) (*model.Article, error)
+type ArticleService interface {
+	CreateNewArticle(context.Context, *dto.CreateArticleDTO) (*model.Article, error)
+	GetArticleByURL(context.Context, string) (*model.Article, error)
 }
 
 type articleService struct {
-	userRepository repository.UserRepository
+	stringHelper      infrastructure.StringHelper
+	userRepository    repository.UserRepository
 	articleRepository repository.ArticlesRepository
 }
 
-func ProvideArticleService(userRepository repository.UserRepository, articleRepository repository.ArticlesRepository) ArticleService{
+func ProvideArticleService(userRepository repository.UserRepository,
+	articleRepository repository.ArticlesRepository,
+	stringHelper infrastructure.StringHelper) ArticleService {
 	return &articleService{
-		userRepository: userRepository,
+		stringHelper:      stringHelper,
+		userRepository:    userRepository,
 		articleRepository: articleRepository,
 	}
 }
 
-func (articleService *articleService) CreateNewArticle(ctx context.Context, authorID int64, createArticleDTO *dto.CreateArticleDTO) (*model.Article, error){
+func (service *articleService) CreateNewArticle(ctx context.Context, createArticleDTO *dto.CreateArticleDTO) (*model.Article, error) {
 	newArticle := model.Article{
-		Title:         createArticleDTO.Title,
-		Content:       createArticleDTO.Content,
-		AuthorID:      authorID,
+		Title:    createArticleDTO.Title,
+		Url:      service.stringHelper.StringToURL(createArticleDTO.Title),
+		Content:  createArticleDTO.Content,
+		AuthorID: createArticleDTO.AuthorID,
 	}
-	article, err := articleService.articleRepository.Create(ctx, &newArticle)
-	if err != nil{
+	article, err := service.articleRepository.Create(ctx, &newArticle)
+	if err != nil {
+		return article, err
+	}
+	return article, err
+}
+
+
+func (service *articleService) GetArticleByURL(ctx context.Context, url string) (*model.Article, error) {
+	article, err := service.articleRepository.GetByURL(ctx, url)
+	if err != nil {
 		return article, err
 	}
 	return article, err

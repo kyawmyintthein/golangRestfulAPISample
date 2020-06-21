@@ -3,6 +3,7 @@ package api
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/go-chi/chi"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/api_errors"
 	"github.com/kyawmyintthein/golangRestfulAPISample/config"
 	"github.com/kyawmyintthein/golangRestfulAPISample/infrastructure"
@@ -38,4 +39,9 @@ func (h *BaseHandler) DecodeAndValidate(r *http.Request, v infrastructure.Reques
 	defer r.Body.Close()
 	log.Debugf("REQUEST PAYLOAD: %s", string(payload))
 	return v.Validate(r.Context())
+}
+
+
+func (h *BaseHandler) URLParam(r *http.Request, key string) string {
+	return chi.URLParam(r, key)
 }
