@@ -7,12 +7,12 @@ import (
 )
 
 type ArticleHandler struct {
-	BaseHandler
+	*BaseHandler
 	ArticleService service.ArticleService
 }
 
-func ProvideArticleHandler(articleService service.ArticleService) *ArticleHandler {
-	return &ArticleHandler{ArticleService: articleService}
+func ProvideArticleHandler(baseHandler *BaseHandler, articleService service.ArticleService) *ArticleHandler {
+	return &ArticleHandler{BaseHandler: baseHandler, ArticleService: articleService}
 }
 
 func (handler *ArticleHandler) CreateArticle(w http.ResponseWriter, r *http.Request) {

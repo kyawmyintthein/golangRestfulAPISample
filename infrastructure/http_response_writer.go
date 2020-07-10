@@ -24,8 +24,9 @@ type ResponseFormat struct {
 
 type ErrorResponse struct {
 	Code        int    `json:"code"`
-	Message     string `json:"string"`
+	Message     string `json:"message"`
 	Description string `json:"description"`
+	Errors      []string `json:"errors"`
 }
 
 type httpResponseWriter struct {
@@ -64,7 +65,7 @@ func (c *httpResponseWriter) RenderJSON(r *http.Request, w http.ResponseWriter, 
 
 func (c *httpResponseWriter) writeJSON(r *http.Request, w http.ResponseWriter, v interface{}) error {
 	data, err := json.Marshal(v)
-
+	w.Header().Set("Content-Type", "application/json")
 	//log := logging.Logger.GetLogger(ctx)
 	log.Info("Response: ", string(data))
 

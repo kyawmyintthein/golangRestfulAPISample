@@ -10,7 +10,7 @@ type FailedToDecodeRequestBodyError struct{
 }
 
 func NewFailedToDecodeRequestBodyError() *FailedToDecodeRequestBodyError{
-	baseErr := errors.NewError(error_const.InternalServerError, error_const.UnknownError, error_const.ErrorMapping[error_const.UnknownError])
+	baseErr := errors.NewError(error_const.InvalidRequestPayload, error_const.InvalidRequestPayloadError, error_const.ErrorMapping[error_const.InvalidRequestPayloadError])
 	return &FailedToDecodeRequestBodyError{
 		baseErr,
 	}

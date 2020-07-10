@@ -47,7 +47,7 @@ func NewApp(configFilePaths ...string) (*restApiApplication, error) {
 	articlesRepository := mongo_repository.ProvideArticleRepository(baseMongoRepo)
 	stringHelper := infrastructure.ProvideStringHelper()
 	articleService := service.ProvideArticleService(userRepository, articlesRepository, stringHelper)
-	articleHandler := api.ProvideArticleHandler(articleService)
+	articleHandler := api.ProvideArticleHandler(baseHandler, articleService)
 	appRestApiApplication := &restApiApplication{
 		config:          generalConfig,
 		router:          mux,

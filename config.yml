@@ -8,8 +8,16 @@ graceful_shutdown:
  timeout: 10 # second
 #db
 mongodb:
- host: mongodb://localhost:27017
- database: rest_api_development
+ hosts: localhost:27017
+ db_name: rest_api_development
+ username: guest
+ password: guest
+ timeout: 10
+ dial_timeout: 10
+ pool_size: 10
+ auth_source:
+ replica_set:
+ uri:
 
 mongo_base_repo:
  enabled_newrelic_tracer: true
