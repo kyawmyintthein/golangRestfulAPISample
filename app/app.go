@@ -2,16 +2,17 @@ package app
 
 import (
 	"context"
-	"github.com/go-chi/chi"
-	"github.com/kyawmyintthein/golangRestfulAPISample/app/delivery/api"
-	"github.com/kyawmyintthein/golangRestfulAPISample/app/repository"
-	"github.com/kyawmyintthein/golangRestfulAPISample/app/service"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/logging"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/go-chi/chi"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/delivery/api"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/repository"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/service"
+	"github.com/kyawmyintthein/golangRestfulAPISample/internal/logging"
 
 	//"fmt"
 	"github.com/kyawmyintthein/golangRestfulAPISample/config"

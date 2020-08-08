@@ -3,11 +3,10 @@ package infrastructure
 import (
 	"encoding/json"
 	"fmt"
-	error_const "github.com/kyawmyintthein/golangRestfulAPISample/app/constant/error-const"
-	"github.com/kyawmyintthein/golangRestfulAPISample/config"
-	errInterfaces "github.com/kyawmyintthein/golangRestfulAPISample/internal/errors/interfaces"
-	"github.com/prometheus/common/log"
 	"net/http"
+
+	"github.com/kyawmyintthein/golangRestfulAPISample/config"
+	"github.com/prometheus/common/log"
 )
 
 type HttpResponseWriter interface {
@@ -23,9 +22,9 @@ type ResponseFormat struct {
 }
 
 type ErrorResponse struct {
-	Code        int    `json:"code"`
-	Message     string `json:"message"`
-	Description string `json:"description"`
+	Code        int      `json:"code"`
+	Message     string   `json:"message"`
+	Description string   `json:"description"`
 	Errors      []string `json:"errors"`
 }
 
@@ -104,7 +103,6 @@ func (c *httpResponseWriter) RenderErrorAsJSON(r *http.Request, w http.ResponseW
 	return c.writeJSON(r, w, resp)
 
 }
-
 
 // error is not CustomError type return default error code (Internal Server Error)
 func getErrorCode(err error) int {

@@ -1,2 +1,0 @@
-en-US:
-  email_title: "Hello, {{var_first_name}} {{var_last_name}}!"

@@ -3,11 +3,6 @@ module github.com/kyawmyintthein/golangRestfulAPISample
 go 1.14
 
 require (
-	bitbucket.org/libertywireless/circles-framework/clerrors v0.0.0-20200511154418-7f60213cd2c6
-	bitbucket.org/libertywireless/circles-framework/cllogging v0.0.0-20200511154418-7f60213cd2c6
-	bitbucket.org/libertywireless/circles-framework/clmiddlewares v0.0.0-20200511154418-7f60213cd2c6
-	bitbucket.org/libertywireless/circles-framework/clnewrelic v0.0.0-20200511154418-7f60213cd2c6
-	bitbucket.org/libertywireless/circles-framework/cloption v0.0.0-20200511154418-7f60213cd2c6
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/gin-gonic/gin v1.6.3
