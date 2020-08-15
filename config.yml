@@ -1,14 +1,54 @@
+#application
+app:
+  environment: dev
+  http_port: 4000
+#graceful shutdown
+graceful_shutdown:
+ enabled: true
+ timeout: 10 # second
 #db
 mongodb:
- host: mongodb://localhost:27017
- database: rest_api_development
+ hosts: localhost:27017
+ db_name: rest_api_development
+ username: guest
+ password: guest
+ timeout: 10
+ dial_timeout: 10
+ pool_size: 10
+ auth_source:
+ replica_set:
+ uri:
+
+mongo_base_repo:
+ enabled_newrelic_tracer: true
+
+sqldb:
+ driver: mysql
+ db_name: golang_restful_api_sample
+ db_host: localhost:3306
+ dial_timeout: 10
+ max_idle_conns: 10
+ max_open_conns: 10
+ conn_max_life_time:
+ username: root
+ password:
+ ssl_mode:
+ uri:
+
+sql_base_repo:
+ enabled_newrelic_tracer: true
 
 # log
 log:
- log_level: info
- log_file: log/rest_api.log
- log_rotation: true
- json_log_format: true
+ level: info
+ filepath: log/rest_api.log
+ rotation: true
+ json_format: true
+
+nr_tracer:
+ enabled: false
+ name: golagnRestfulAPISample
+ license: ""
 
 swagger:
  host: "localhost:3030"

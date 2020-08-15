@@ -1,68 +1,23 @@
 package config
 
 import (
-	"fmt"
-	"github.com/spf13/viper"
-	"os"
+	base_repository "github.com/kyawmyintthein/golangRestfulAPISample/internal/base-repository"
+	"github.com/kyawmyintthein/golangRestfulAPISample/internal/logging"
+	"github.com/kyawmyintthein/golangRestfulAPISample/internal/mongo"
+	"github.com/kyawmyintthein/golangRestfulAPISample/internal/newrelic"
+	"github.com/kyawmyintthein/golangRestfulAPISample/internal/sql"
 )
 
-type (
+type GeneralConfig struct {
+	SqlDB       sql.SqlDBConfig                  `mapstructure:"sqldb" json:"sqldb"`
+	SqlBaseRepo base_repository.SqlRepositoryCfg `mapstructure:"sql_base_repo" json:"sql_base_repo"`
 
-	MongodbConfig struct{
-		Database  string		`mapstructure:"database"`
-		Host  string			`mapstructure:"host"`
-	}
+	MongoDB       mongo.MongodbConfig                  `mapstructure:"mongodb" json:"mongodb"`
+	MongoBaseRepo base_repository.MongodbRepositoryCfg `mapstructure:"mongo_base_repo" json:"mongo_base_repo"`
 
-	SwaggerConfig struct{
-		Host string 	`mapstructure:"host"`
-		Version string 	`mapstructure:"version"`
-		BasePath string `mapstructure:"base_path"`
-	}
-
-	LogConfig struct {
-		LogFilePath   string  `mapstructure:"log_file"`
-		LogLevel      string  `mapstructure:"log_level"`
-		JsonLogFormat bool    `mapstructure:"json_log_format"`
-		LogRotation   bool    `mapstructure:"log_rotation"`
-	}
-
-	GeneralConfig struct{
-		Log  	 LogConfig  				`mapstructure:"log"`
-		Mongodb  MongodbConfig     			`mapstructure:"mongodb"`
-		Swagger  SwaggerConfig              `mapstructure:"swagger"`
-	}
-)
-
-func Loadconfig(filepaths ...string)  *GeneralConfig {
-	if len(filepaths) == 0{
-		panic(fmt.Errorf("Empty config file"))
-	}
-
-	viper.SetConfigFile(filepaths[0])
-	viper.SetConfigType("yaml")
-	err := viper.ReadInConfig()
-	if err != nil {
-		panic(fmt.Errorf("Fatal error config file: %s \n", err))
-	}
-
-	for _, filepath := range filepaths[1:] {
-		func(filepath string){
-			f, err := os.Open(filepath)
-			if err != nil{
-				panic(fmt.Errorf("Fatal error read config file: %s \n", err))
-			}
-			defer f.Close()
-			err = viper.MergeConfig(f)
-			if err != nil {
-				panic(fmt.Errorf("Fatal error mergeing config file: %s \n", err))
-			}
-		}(filepath)
-	}
-
-	var config GeneralConfig
-	err = viper.Unmarshal(&config)
-	if err != nil {
-		panic(fmt.Errorf("Fatal error marshal config file: %s \n", err))
-	}
-	return &config
+	NRTracer         newrelic.NewrelicCfg `mapstructure:"nr_tracer" json:"nr_tracer"`
+	App              AppCfg               `mapstructure:"app" json:"app"`
+	GracefulShutdown GracefulShutdownCfg  `json:"graceful_shutdown" mapstructure:"graceful_shutdown"`
+	Log              logging.LogCfg       `mapstructure:"log" json:"log"`
+	Swagger          SwaggerCfg           `mapstructure:"swagger" json:"swagger"`
 }
