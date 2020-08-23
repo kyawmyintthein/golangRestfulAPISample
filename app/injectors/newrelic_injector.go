@@ -1,14 +1,17 @@
 package injectors
 
 import (
+	"context"
+
 	"github.com/kyawmyintthein/golangRestfulAPISample/config"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/newrelic"
+	"github.com/kyawmyintthein/orange-contrib/logx"
+	"github.com/kyawmyintthein/orange-contrib/tracingx/newrelicx"
 )
 
-func ProvideNewRelic(config *config.GeneralConfig) (newrelic.NewrelicTracer, error) {
-	newrelicTracer, err := newrelic.New(&config.NRTracer)
+func ProvideNewRelic(config *config.GeneralConfig, logger logx.Logger) (newrelicx.NewrelicTracer, error) {
+	newrelicTracer, err := newrelicx.New(&config.NRTracer, newrelicx.WithLogger(logger))
 	if err != nil {
-		cllogging.GetLogger().WithError(err).Error("failed to init newrelic tracer")
+		logx.Error(context.Background(), err, "failed to init newrelic tracer")
 		return newrelicTracer, nil
 	}
 	return newrelicTracer, nil

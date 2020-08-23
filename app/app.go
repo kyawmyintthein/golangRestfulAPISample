@@ -11,8 +11,8 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/delivery/api"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/repository"
-	"github.com/kyawmyintthein/golangRestfulAPISample/app/service"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/logging"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/usecase"
+	"github.com/kyawmyintthein/orange-contrib/logx"
 
 	//"fmt"
 	"github.com/kyawmyintthein/golangRestfulAPISample/config"
@@ -32,9 +32,10 @@ type restApiApplication struct {
 	config     *config.GeneralConfig
 	router     *chi.Mux
 	httpServer *http.Server
+	logger     logx.Logger
 
 	userRepository repository.UserRepository
-	userService    service.UserService
+	userUsecase    usecase.UserUsecase
 
 	// API handlers
 	HealthHandler   *api.HealthHandler
@@ -45,45 +46,41 @@ type restApiApplication struct {
 
 // Start other services if necessary
 func (app *restApiApplication) Init() error {
-	logging.Init(&app.config.Log)
 	app.routes()
 	return nil
 }
 
 // Start serve http server
 func (app *restApiApplication) StartHttpServer() error {
-	log := logging.GetStructuredLogger(context.Background())
 	if app.config.GracefulShutdown.Enabled {
 		go func() {
 			err := app.httpServer.ListenAndServe()
 			if err != nil {
-				log.WithError(err).Errorf("Failed to start http server at port :%d ", app.config.App.HttpPort)
+				logx.Errorf(context.Background(), err, "Failed to start http server at port :%d ", app.config.App.HttpPort)
 			}
 		}()
-		log.Infof("Server started at port with graceful shutdown :%d ", app.config.App.HttpPort)
+		logx.Infof(context.Background(), "Server started at port with graceful shutdown :%d ", app.config.App.HttpPort)
 		app.startGracefulShutdownChan()
 		return nil
 	}
-	log.Infof("Server started at port :%d ", app.config.App.HttpPort)
+	logx.Infof(context.Background(), "Server started at port :%d ", app.config.App.HttpPort)
 	return app.httpServer.ListenAndServe()
 }
 
 func (app *restApiApplication) startGracefulShutdownChan() {
-	log := logging.GetStructuredLogger(context.Background())
-
 	var gracefulStop = make(chan os.Signal)
 	signal.Notify(gracefulStop, syscall.SIGINT)
 	// interrupt signal sent from terminal
 	signal.Notify(gracefulStop, os.Interrupt)
 	// sigterm signal sent from kubernetes
 	signal.Notify(gracefulStop, syscall.SIGTERM)
-	log.Info("Enabled Graceful Shutdown")
+	logx.Info(context.Background(), "Enabled Graceful Shutdown")
 
 	select {
 	case sig := <-gracefulStop:
-		log.Warnf("caught sig: %+v", sig)
+		logx.Warnf(context.Background(), "caught sig: %+v", sig)
 	case <-app.ShutdownHandler.ShutdownSignal:
-		log.Warn("stop api called")
+		logx.Warn(context.Background(), "stop api called")
 	}
 
 	app.shutDownProcesses()
@@ -91,17 +88,15 @@ func (app *restApiApplication) startGracefulShutdownChan() {
 
 func (app *restApiApplication) shutDownProcesses() {
 
-	log := logging.GetStructuredLogger(context.Background())
-
 	// We received an interrupt signal, server shut down.
 	if err := app.httpServer.Shutdown(context.Background()); err != nil {
 		// Error from closing listeners, or context timeout:
-		log.WithError(err).Error("HTTP server Shutdown: %v", err)
+		logx.Error(context.Background(), err, "HTTP server Shutdown")
 	}
-	log.Infof("Http server shut down finished.")
+	logx.Infof(context.Background(), "Http server shut down finished.")
 	// this sleep is to give buffer so that any pending process can completes gracefully,.
-	log.Infof("Wait for %v to finish processing", app.config.GracefulShutdown.Timeout*time.Second)
+	logx.Infof(context.Background(), "Wait for %v to finish processing", app.config.GracefulShutdown.Timeout*time.Second)
 	time.Sleep(app.config.GracefulShutdown.Timeout * time.Second)
-	log.Infof("Shutting down.")
+	logx.Infof(context.Background(), "Shutting down.")
 	os.Exit(0)
 }

@@ -15,12 +15,12 @@ type DuplicateResourceError struct {
 	*errorx.ErrorStacktrace
 }
 
-func NewDuplicateResourceError() *DuplicateResourceError {
+func NewDuplicateResourceError(resource string) *DuplicateResourceError {
 	return &DuplicateResourceError{
-		errorx.NewErrorX(errid.ErrorMapping[errid.DuplicateResource]),
-		errorx.NewErrorWithCode(errcode.DuplicateResourceError),
-		errorx.NewErrorWithID(errid.DuplicateResource),
-		errorx.NewErrorWithHttpStatus(errorx.GenerateHttpStatusCodeFromErrorCode(errcode.DuplicateResourceError)),
-		errorx.NewErrorWithStackTrace(constant.DefaultErrorStackLen, contstant.DefaultErrorCallerLen),
+		errorx.NewErrorX(errid.ErrorMapping[errid.DuplicateResourceError], "resource", resource),
+		errorx.NewErrorWithCode(errcode.DuplicateResource),
+		errorx.NewErrorWithID(errid.DuplicateResourceError),
+		errorx.NewErrorWithHttpStatus(errorx.GenerateHttpStatusCodeFromErrorCode(errcode.DuplicateResource)),
+		errorx.NewErrorWithStackTrace(constant.DefaultErrorStackLen, constant.DefaultErrorCallerLen),
 	}
 }

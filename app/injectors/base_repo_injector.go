@@ -2,31 +2,18 @@ package injectors
 
 import (
 	"github.com/kyawmyintthein/golangRestfulAPISample/config"
-	base_repository "github.com/kyawmyintthein/golangRestfulAPISample/internal/base-repository"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/mongo"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/newrelic"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/sql"
+	"github.com/kyawmyintthein/golangRestfulAPISample/infrastructure"
+	"github.com/kyawmyintthein/orange-contrib/tracingx/newrelicx"
 )
 
 func ProvideBaseSqlRepo(config *config.GeneralConfig,
-	sqlDBConnector sql.SqlDBConnector,
-	nrTracer newrelic.NewrelicTracer) (*base_repository.BaseSqlRepository) {
-	baseSqlRepo := &base_repository.BaseSqlRepository{
-		Config: &config.SqlBaseRepo,
-		NRTracer: nrTracer,
-		DBConnector: sqlDBConnector,
-	}
-	return baseSqlRepo
+	sqlDBConnector infrastructure.SqlDBConnector,
+	nrTracer newrelicx.NewrelicTracer) *infrastructure.BaseSqlRepository {
+	return infrastructure.NewBaseSqlRepository(&config.SqlBaseRepo, sqlDBConnector, infrastructure.WithNewrelicTracer(nrTracer))
 }
 
-
 func ProvideBaseMongoRepo(config *config.GeneralConfig,
-	mongodbConnector mongo.MongodbConnector,
-	nrTracer newrelic.NewrelicTracer) (*base_repository.BaseMongoRepo) {
-	baseSqlRepo := &base_repository.BaseMongoRepo{
-		Config: &config.MongoBaseRepo,
-		NRTracer: nrTracer,
-		MongodbConnector: mongodbConnector,
-	}
-	return baseSqlRepo
+	mongodbConnector infrastructure.MongodbConnector,
+	nrTracer newrelicx.NewrelicTracer) *infrastructure.BaseMongoRepo {
+	return infrastructure.NewBaseMongoRepo(&config.MongoBaseRepo, mongodbConnector, infrastructure.WithNewrelicTracer(nrTracer))
 }

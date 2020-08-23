@@ -2,10 +2,12 @@
 app:
   environment: dev
   http_port: 4000
+
 #graceful shutdown
 graceful_shutdown:
  enabled: true
  timeout: 10 # second
+
 #db
 mongodb:
  hosts: localhost:27017
@@ -22,7 +24,7 @@ mongodb:
 mongo_base_repo:
  enabled_newrelic_tracer: true
 
-sqldb:
+mysqldb:
  driver: mysql
  db_name: golang_restful_api_sample
  db_host: localhost:3306
@@ -31,7 +33,7 @@ sqldb:
  max_open_conns: 10
  conn_max_life_time:
  username: root
- password:
+ password: root
  ssl_mode:
  uri:
 
@@ -40,10 +42,10 @@ sql_base_repo:
 
 # log
 log:
- level: info
- filepath: log/rest_api.log
- rotation: true
- json_format: true
+ log_level: info
+ log_file: log/rest_api.log
+ log_rotation: true
+ log_format: json
 
 nr_tracer:
  enabled: false
