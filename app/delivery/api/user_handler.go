@@ -1,11 +1,13 @@
 package api
 
-import "github.com/kyawmyintthein/golangRestfulAPISample/app/service"
+import (
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/usecase"
+)
 
-type UserHandler struct{
-	UserService service.UserService
+type UserHandler struct {
+	UserUsecase usecase.UserUsecase
 }
 
-func ProvideUserHandler(userService service.UserService) *UserHandler {
-	return &UserHandler{UserService: userService}
+func ProvideUserHandler(userUsecase usecase.UserUsecase) *UserHandler {
+	return &UserHandler{UserUsecase: userUsecase}
 }

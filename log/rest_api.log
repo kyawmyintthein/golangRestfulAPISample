@@ -1,52 +1,25 @@
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-05-26T11:54:33+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-05-26T11:54:33+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-05-26T11:54:33+08:00"}
-{"level":"warning","msg":"caught sig: [interrupt]","time":"2020-05-26T12:44:00+08:00"}
-{"level":"info","msg":"Http server shut down finished.","time":"2020-05-26T12:44:00+08:00"}
-{"level":"info","msg":"Wait for 10s to finish processing","time":"2020-05-26T12:44:00+08:00"}
-{"error_message":"http: Server closed","level":"error","messages":"http: Server closed","msg":"Failed to start http server at port :4000 ","root_cause":null,"stacktrace":null,"time":"2020-05-26T12:44:00+08:00"}
-{"level":"info","msg":"Shutting down.","time":"2020-05-26T12:44:10+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:41:19+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:41:19+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:41:19+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:44:18+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:44:18+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:44:18+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:46:21+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:46:21+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:46:21+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:46:40+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:46:40+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:46:40+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:47:20+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:47:20+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:47:20+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:50:07+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:50:07+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:50:07+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:58:07+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:58:07+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:58:07+08:00"}
-{"level":"warning","msg":"caught sig: [interrupt]","time":"2020-06-24T12:58:53+08:00"}
-{"level":"info","msg":"Http server shut down finished.","time":"2020-06-24T12:58:53+08:00"}
-{"level":"info","msg":"Wait for 10s to finish processing","time":"2020-06-24T12:58:53+08:00"}
-{"error_message":"http: Server closed","level":"error","messages":"http: Server closed","msg":"Failed to start http server at port :4000 ","root_cause":null,"stacktrace":null,"time":"2020-06-24T12:58:53+08:00"}
-{"level":"info","msg":"Shutting down.","time":"2020-06-24T12:59:03+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T12:59:12+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T12:59:12+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T12:59:12+08:00"}
-{"level":"warning","msg":"caught sig: [interrupt]","time":"2020-06-24T14:29:48+08:00"}
-{"level":"info","msg":"Http server shut down finished.","time":"2020-06-24T14:29:48+08:00"}
-{"level":"info","msg":"Wait for 10s to finish processing","time":"2020-06-24T14:29:48+08:00"}
-{"error_message":"http: Server closed","level":"error","messages":"http: Server closed","msg":"Failed to start http server at port :4000 ","root_cause":null,"stacktrace":null,"time":"2020-06-24T14:29:48+08:00"}
-{"level":"info","msg":"Shutting down.","time":"2020-06-24T14:29:58+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-06-24T14:30:11+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-06-24T14:30:11+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-06-24T14:30:11+08:00"}
-{"level":"warning","msg":"caught sig: [interrupt]","time":"2020-06-24T14:30:32+08:00"}
-{"level":"info","msg":"Http server shut down finished.","time":"2020-06-24T14:30:32+08:00"}
-{"level":"info","msg":"Wait for 10s to finish processing","time":"2020-06-24T14:30:32+08:00"}
-{"error_message":"http: Server closed","level":"error","messages":"http: Server closed","msg":"Failed to start http server at port :4000 ","root_cause":null,"stacktrace":null,"time":"2020-06-24T14:30:32+08:00"}
-{"level":"info","msg":"Initialized Logger successfully","time":"2020-07-10T23:44:57+08:00"}
-{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-07-10T23:44:57+08:00"}
-{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-07-10T23:44:57+08:00"}
+{"level":"info","msg":"[LOGx]:: initialized logx successfully","time":"2020-08-23T18:10:09+08:00"}
+{"level":"info","msg":"Successfully connected to database: golang_restful_api_sample","time":"2020-08-23T18:10:09+08:00"}
+{"error_message":"license length is not 40","level":"error","messages":"license length is not 40","msg":"[NewrelicX] failed to initiate new-relic tracer","root_cause":null,"stacktrace":null,"time":"2020-08-23T18:10:09+08:00"}
+{"error_message":"license length is not 40","level":"error","messages":"license length is not 40","msg":"failed to init newrelic tracer","root_cause":null,"stacktrace":null,"time":"2020-08-23T18:10:09+08:00"}
+{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-08-23T18:10:09+08:00"}
+{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-08-23T18:10:09+08:00"}
+{"level":"info","msg":"Response:  {\"environment\":\"dev\"}","time":"2020-08-23T18:10:18+08:00"}
+{"level":"info","msg":"Response:  {\"environment\":\"dev\"}","time":"2020-08-23T18:10:28+08:00"}
+{"level":"warning","msg":"caught sig: interrupt","time":"2020-08-23T18:10:30+08:00"}
+{"level":"info","msg":"Http server shut down finished.","time":"2020-08-23T18:10:30+08:00"}
+{"level":"info","msg":"Wait for 10s to finish processing","time":"2020-08-23T18:10:30+08:00"}
+{"error_message":"http: Server closed","level":"error","messages":"http: Server closed","msg":"Failed to start http server at port :4000 ","root_cause":null,"stacktrace":null,"time":"2020-08-23T18:10:30+08:00"}
+{"level":"info","msg":"Shutting down.","time":"2020-08-23T18:10:40+08:00"}
+{"level":"info","msg":"[LOGx]:: initialized logx successfully","time":"2020-08-23T18:10:47+08:00"}
+{"level":"info","msg":"Successfully connected to database: golang_restful_api_sample","time":"2020-08-23T18:10:47+08:00"}
+{"error_message":"license length is not 40","level":"error","messages":"license length is not 40","msg":"[NewrelicX] failed to initiate new-relic tracer","root_cause":null,"stacktrace":null,"time":"2020-08-23T18:10:47+08:00"}
+{"error_message":"license length is not 40","level":"error","messages":"license length is not 40","msg":"failed to init newrelic tracer","root_cause":null,"stacktrace":null,"time":"2020-08-23T18:10:47+08:00"}
+{"level":"info","msg":"Server started at port with graceful shutdown :4000 ","time":"2020-08-23T18:10:47+08:00"}
+{"level":"info","msg":"Enabled Graceful Shutdown","time":"2020-08-23T18:10:47+08:00"}
+{"level":"info","msg":"Response:  {\"environment\":\"dev\"}","time":"2020-08-23T18:10:51+08:00"}
+{"level":"warning","msg":"caught sig: interrupt","time":"2020-08-23T18:11:04+08:00"}
+{"level":"info","msg":"Http server shut down finished.","time":"2020-08-23T18:11:04+08:00"}
+{"level":"info","msg":"Wait for 10s to finish processing","time":"2020-08-23T18:11:04+08:00"}
+{"error_message":"http: Server closed","level":"error","messages":"http: Server closed","msg":"Failed to start http server at port :4000 ","root_cause":null,"stacktrace":null,"time":"2020-08-23T18:11:04+08:00"}
+{"level":"info","msg":"Shutting down.","time":"2020-08-23T18:11:14+08:00"}

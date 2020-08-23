@@ -8,13 +8,14 @@ import (
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/injectors"
 	mongoRepo "github.com/kyawmyintthein/golangRestfulAPISample/app/repository/mongo_repository"
 	mysqlRepo "github.com/kyawmyintthein/golangRestfulAPISample/app/repository/mysql_repository"
-	"github.com/kyawmyintthein/golangRestfulAPISample/app/service"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/usecase"
 	"github.com/kyawmyintthein/golangRestfulAPISample/infrastructure"
 )
 
-func NewApp(configFilePaths ...string) (*restApiApplication, error){
+func NewApp(configFilePaths ...string) (*restApiApplication, error) {
 	panic(wire.Build(
 		injectors.ProvideConfig,
+		injectors.ProvideLogger,
 		injectors.ProvideRouter,
 		injectors.ProvideHttpServer,
 		injectors.ProvideNewRelic,
@@ -30,8 +31,8 @@ func NewApp(configFilePaths ...string) (*restApiApplication, error){
 		mysqlRepo.ProvideUserRepository,
 		mongoRepo.ProvideArticleRepository,
 
-		service.ProvideUserService,
-		service.ProvideArticleService,
+		usecase.ProvideUserUsecase,
+		usecase.ProvideArticleUsecase,
 
 		api.ProvideBaseHandler,
 		api.ProvideHealthHandler,

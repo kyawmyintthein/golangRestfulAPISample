@@ -10,7 +10,7 @@ import (
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/injectors"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/repository/mongo_repository"
 	"github.com/kyawmyintthein/golangRestfulAPISample/app/repository/mysql_repository"
-	"github.com/kyawmyintthein/golangRestfulAPISample/app/service"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/usecase"
 	"github.com/kyawmyintthein/golangRestfulAPISample/infrastructure"
 )
 
@@ -23,22 +23,23 @@ func NewApp(configFilePaths ...string) (*restApiApplication, error) {
 	}
 	mux := injectors.ProvideRouter(generalConfig)
 	server := injectors.ProvideHttpServer(generalConfig, mux)
+	logger := injectors.ProvideLogger(generalConfig)
 	sqlDBConnector, err := injectors.ProvideSqlDBConnector(generalConfig)
 	if err != nil {
 		return nil, err
 	}
-	newrelicTracer, err := injectors.ProvideNewRelic(generalConfig)
+	newrelicTracer, err := injectors.ProvideNewRelic(generalConfig, logger)
 	if err != nil {
 		return nil, err
 	}
 	baseSqlRepository := injectors.ProvideBaseSqlRepo(generalConfig, sqlDBConnector, newrelicTracer)
 	userRepository := mysql_repository.ProvideUserRepository(baseSqlRepository)
-	userService := service.ProvideUserService(userRepository)
-	httpResponseWriter := infrastructure.NewHttpResponseWriter(generalConfig)
+	userUsecase := usecase.ProvideUserUsecase(userRepository)
+	httpResponseWriter := infrastructure.NewHttpResponseWriter()
 	baseHandler := api.ProvideBaseHandler(generalConfig, httpResponseWriter)
 	healthHandler := api.ProvideHealthHandler(baseHandler)
 	shutdownHandler := api.ProvideShutdownHandler(baseHandler)
-	userHandler := api.ProvideUserHandler(userService)
+	userHandler := api.ProvideUserHandler(userUsecase)
 	mongodbConnector, err := injectors.ProvideMongoDBConnector(generalConfig)
 	if err != nil {
 		return nil, err
@@ -46,14 +47,15 @@ func NewApp(configFilePaths ...string) (*restApiApplication, error) {
 	baseMongoRepo := injectors.ProvideBaseMongoRepo(generalConfig, mongodbConnector, newrelicTracer)
 	articlesRepository := mongo_repository.ProvideArticleRepository(baseMongoRepo)
 	stringHelper := infrastructure.ProvideStringHelper()
-	articleService := service.ProvideArticleService(userRepository, articlesRepository, stringHelper)
-	articleHandler := api.ProvideArticleHandler(baseHandler, articleService)
+	articleUsecase := usecase.ProvideArticleUsecase(userRepository, articlesRepository, stringHelper)
+	articleHandler := api.ProvideArticleHandler(baseHandler, articleUsecase)
 	appRestApiApplication := &restApiApplication{
 		config:          generalConfig,
 		router:          mux,
 		httpServer:      server,
+		logger:          logger,
 		userRepository:  userRepository,
-		userService:     userService,
+		userUsecase:     userUsecase,
 		HealthHandler:   healthHandler,
 		ShutdownHandler: shutdownHandler,
 		UserHandler:     userHandler,

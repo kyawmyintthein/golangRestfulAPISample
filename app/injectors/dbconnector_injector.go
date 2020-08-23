@@ -2,15 +2,13 @@ package injectors
 
 import (
 	"github.com/kyawmyintthein/golangRestfulAPISample/config"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/mongo"
-	"github.com/kyawmyintthein/golangRestfulAPISample/internal/sql"
+	"github.com/kyawmyintthein/golangRestfulAPISample/infrastructure"
 )
 
-func ProvideSqlDBConnector(config *config.GeneralConfig) (sql.SqlDBConnector, error) {
-	return sql.NewSQLConnector(&config.SqlDB)
+func ProvideSqlDBConnector(config *config.GeneralConfig) (infrastructure.SqlDBConnector, error) {
+	return infrastructure.NewSQLConnector(&config.MysqlDB)
 }
 
-func ProvideMongoDBConnector(config *config.GeneralConfig) (mongo.MongodbConnector, error) {
-	return mongo.NewMongodbConnector(&config.MongoDB)
+func ProvideMongoDBConnector(config *config.GeneralConfig) (infrastructure.MongodbConnector, error) {
+	return infrastructure.NewMongodbConnector(&config.MongoDB)
 }
-

@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/kyawmyintthein/golangRestfulAPISample/config"
-	"github.com/prometheus/common/log"
+	"github.com/kyawmyintthein/golangRestfulAPISample/app/constant/errcode"
+	"github.com/kyawmyintthein/orange-contrib/errorx"
+	"github.com/kyawmyintthein/orange-contrib/logx"
 )
 
 type HttpResponseWriter interface {
@@ -29,13 +30,10 @@ type ErrorResponse struct {
 }
 
 type httpResponseWriter struct {
-	config *config.GeneralConfig
 }
 
-func NewHttpResponseWriter(config *config.GeneralConfig) HttpResponseWriter {
-	return &httpResponseWriter{
-		config: config,
-	}
+func NewHttpResponseWriter() HttpResponseWriter {
+	return &httpResponseWriter{}
 }
 
 func (c *httpResponseWriter) RenderPlainText(
@@ -49,10 +47,10 @@ func (c *httpResponseWriter) RenderPlainText(
 	if err != nil {
 		_, _ = fmt.Fprintf(w, err.Error())
 		w.WriteHeader(500)
-		log.Info("Response: ", err.Error(), "; StatusCode: ", 500)
+		logx.Info(r.Context(), "Response: ", err.Error(), "; StatusCode: ", 500)
 		return err
 	}
-	log.Info("Response: ", v.(string), "; StatusCode: ", statusCode)
+	logx.Info(r.Context(), "Response: ", v.(string), "; StatusCode: ", statusCode)
 	w.WriteHeader(statusCode)
 	return nil
 }
@@ -65,8 +63,7 @@ func (c *httpResponseWriter) RenderJSON(r *http.Request, w http.ResponseWriter, 
 func (c *httpResponseWriter) writeJSON(r *http.Request, w http.ResponseWriter, v interface{}) error {
 	data, err := json.Marshal(v)
 	w.Header().Set("Content-Type", "application/json")
-	//log := logging.Logger.GetLogger(ctx)
-	log.Info("Response: ", string(data))
+	logx.Info(r.Context(), "Response: ", string(data))
 
 	if err != nil {
 		return err
@@ -82,7 +79,6 @@ func (c *httpResponseWriter) Status(w http.ResponseWriter, statusCode int) {
 // argument error object need to be CustomError type.
 // if not, this function with return with 500 status code as default.
 func (c *httpResponseWriter) RenderErrorAsJSON(r *http.Request, w http.ResponseWriter, err error, messages ...string) error {
-	// log := logging.GetLogger(r.Context())
 	code := getErrorCode(err)
 	statusCode := getHttpStatus(code)
 	var resp interface{}
@@ -106,9 +102,9 @@ func (c *httpResponseWriter) RenderErrorAsJSON(r *http.Request, w http.ResponseW
 
 // error is not CustomError type return default error code (Internal Server Error)
 func getErrorCode(err error) int {
-	errWithCode, ok := err.(errInterfaces.ErrorCode)
+	errWithCode, ok := err.(errorx.ErrorCode)
 	if !ok {
-		return error_const.InternalServerError
+		return errcode.InternalServerError
 	}
 	return errWithCode.Code()
 }
